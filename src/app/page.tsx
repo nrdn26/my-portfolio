@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ProjectCard } from "@/components/ui/ProjectCard"; // Make sure this path is correct
+import { ProjectCard } from "@/components/ui/ProjectCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Github, Instagram, MessageSquare } from "lucide-react";
 
@@ -13,7 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-import { ThemeToggle } from "@/components/ui/ThemeToggle"; // Corrected path
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Home() {
   const projects = [
@@ -26,8 +25,7 @@ export default function Home() {
     },
     {
       title: "Upcoming Android Project",
-      description:
-        "I will build an android app soon. Stay tuned!",
+      description: "I will build an android app soon. Stay tuned!",
       tags: ["Kotlin", "Upcoming"],
       githubUrl: "#",
       liveUrl: "#",
@@ -35,15 +33,15 @@ export default function Home() {
     {
       title: "Upcoming Project (Rust)",
       description: "I will make use of Rust in one of my next projects.",
-      tags: ["Rust", "Upcoming"], // Added placeholder tags
-      githubUrl: "#", // Added placeholder URL
-      liveUrl: "#", // Added placeholder URL
+      tags: ["Rust", "Upcoming"],
+      githubUrl: "#",
+      liveUrl: "#",
     },
   ] as const;
 
   return (
     <div className="flex min-h-screen flex-col bg-white dark:bg-black">
-      {/* --- Glassmorphism Header --- */}
+      {/* Glassmorphism Header */}
       <header className="fixed top-0 left-0 right-0 z-50 h-20 border-b bg-white/30 backdrop-blur-lg dark:bg-black/30">
         <div className="container mx-auto flex h-full items-center justify-between">
           <NavigationMenu>
@@ -94,7 +92,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- Projects Section --- */}
+        {/* Projects Section */}
         <section id="projects" className="container mx-auto py-24">
           <h2 className="mb-8 text-center text-3xl font-bold">
             My Projects
@@ -119,7 +117,7 @@ export default function Home() {
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 md:flex-row md:gap-12">
             <Avatar className="h-48 w-48">
               <AvatarImage
-                src="/assets/Foto_NuredinBajrami.jpg" // Make sure this extension is correct
+                src="/assets/Foto_NuredinBajrami.jpg"
                 alt="Nuredin Bajrami"
                 className="object-cover"
               />
@@ -127,8 +125,8 @@ export default function Home() {
             </Avatar>
             <div className="flex flex-col gap-4 text-center text-lg text-zinc-600 dark:text-zinc-400 md:text-left">
               <p>
-                Hello! I'm Nuredin Bajrami, a computer science aficionado based in Austria. 
-                I specialization is computer networks, operating systemsy cloud computing and cybersecurity.
+                Hello! I'm Nuredin Bajrami, a computer science aficionado based in Austria. My
+                specialization is in computer networks, operating systems, cloud computing, and cybersecurity.
               </p>
               <p>
                 My interest with the areas listed above started when I got my first server, 

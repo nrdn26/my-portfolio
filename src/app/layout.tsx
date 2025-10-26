@@ -1,15 +1,13 @@
-// src/app/layout.tsx
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/ThemeProvider"; // <-- Import
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nuredin Bajrami - Portfolio", // You can change this
-  description: "My personal portfolio website.", // You can change this
+  title: "Nuredin Bajrami - Portfolio",
+  description: "My personal portfolio website.",
 };
 
 export default function RootLayout({
@@ -18,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning> {/* <-- Add suppressHydrationWarning */}
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider // <-- Wrap your children
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
