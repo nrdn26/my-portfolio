@@ -1,65 +1,199 @@
+import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ProjectCard } from "@/components/ui/ProjectCard"; // Make sure this path is correct
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Github, Instagram, MessageSquare } from "lucide-react";
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+
+import { ThemeToggle } from "@/components/ui/ThemeToggle"; // Corrected path
 
 export default function Home() {
+  const projects = [
+    {
+      title: "Pacman-Game",
+      description: "This was a group project for Multimedia",
+      tags: ["HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/nrdn26/PacManGame",
+      liveUrl: "/projects/PacManGame-main/index.html",
+    },
+    {
+      title: "Upcoming Android Project",
+      description:
+        "I will build an android app soon. Stay tuned!",
+      tags: ["Kotlin", "Upcoming"],
+      githubUrl: "#",
+      liveUrl: "#",
+    },
+    {
+      title: "Upcoming Project (Rust)",
+      description: "I will make use of Rust in one of my next projects.",
+      tags: ["Rust", "Upcoming"], // Added placeholder tags
+      githubUrl: "#", // Added placeholder URL
+      liveUrl: "#", // Added placeholder URL
+    },
+  ] as const;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex min-h-screen flex-col bg-white dark:bg-black">
+      {/* --- Glassmorphism Header --- */}
+      <header className="fixed top-0 left-0 right-0 z-50 h-20 border-b bg-white/30 backdrop-blur-lg dark:bg-black/30">
+        <div className="container mx-auto flex h-full items-center justify-between">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="#projects" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Projects
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="#contact" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Contact
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+          <ThemeToggle />
+        </div>
+      </header>
+
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section
+          id="hero"
+          className="relative pt-52 pb-32 text-center bg-[url('/assets/matrix.gif')] bg-cover bg-center"
+        >
+          <div className="absolute inset-0 bg-black opacity-70"></div>
+          <div className="container mx-auto relative z-10">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Hello, I am Nuredin Bajrami
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-200">
+              I'm a second year student at the Johannes Kepler University in
+              Linz.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Button asChild size="lg">
+                <Link href="#projects">View My Projects</Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg">
+                <Link href="#contact">Get in Touch</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* --- Projects Section --- */}
+        <section id="projects" className="container mx-auto py-24">
+          <h2 className="mb-8 text-center text-3xl font-bold">
+            My Projects
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                githubUrl={project.githubUrl}
+                liveUrl={project.liveUrl}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* About Me Section */}
+        <section id="about" className="container mx-auto py-24">
+          <h2 className="mb-8 text-center text-3xl font-bold">About Me</h2>
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 md:flex-row md:gap-12">
+            <Avatar className="h-48 w-48">
+              <AvatarImage
+                src="/assets/Foto_NuredinBajrami.jpg" // Make sure this extension is correct
+                alt="Nuredin Bajrami"
+                className="object-cover"
+              />
+              <AvatarFallback>NB</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col gap-4 text-center text-lg text-zinc-600 dark:text-zinc-400 md:text-left">
+              <p>
+                Hello! I'm Nuredin Bajrami, a computer science aficionado based in Austria. 
+                I specialization is computer networks, operating systemsy cloud computing and cybersecurity.
+              </p>
+              <p>
+                My interest with the areas listed above started when I got my first server, 
+                which was an old computer I got from High School. There I hosted a web server and game servers
+                on headless Ubuntu. I'm currently hosting this website on my Proxmox ThinClient machine and
+                multiple other services.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="container mx-auto py-24">
+          <h2 className="mb-8 text-center text-3xl font-bold">Get in Touch</h2>
+          <p className="mx-auto mb-10 max-w-xl text-center text-lg text-zinc-600 dark:text-zinc-400">
+            I'm always open to connecting. Feel free to reach out or check out my
+            profiles.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Button asChild variant="outline" size="lg">
+              <Link
+                href="https://github.com/nrdn26"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Github className="h-5 w-5" />
+                GitHub
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link
+                href="https://discordapp.com/users/481181876682227712"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <MessageSquare className="h-5 w-5" />
+                Discord
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link
+                href="https://instagram.com/nrdn.brm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Instagram className="h-5 w-5" />
+                Instagram
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t py-8">
+        <div className="container mx-auto text-center text-zinc-600 dark:text-zinc-400">
+          <p>
+            &copy; {new Date().getFullYear()} Nuredin Bajrami. All rights
+            reserved.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
