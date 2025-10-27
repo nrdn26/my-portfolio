@@ -195,7 +195,7 @@ export default function Home() {
                   size="lg"
                   className="w-full sm:w-auto dark:border-green-500 dark:text-green-400 dark:hover:bg-green-900/20 dark:hover:text-green-300"
                 >
-                  <Link href="/resume.pdf" target="_blank">
+                  <Link href="/assets/Lebenslauf_NuredinBajrami.pdf" target="_blank">
                     Download Resume
                   </Link>
                 </Button>
@@ -523,7 +523,7 @@ export default function Home() {
                   </button>
                 </li>
                 <li>
-                  <Link href="/resume.pdf" className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-green-400 transition-colors">
+                  <Link href="/assets/Lebenslauf_NuredinBajrami.pdf" className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-green-400 transition-colors">
                     Resume
                   </Link>
                 </li>
