@@ -79,7 +79,7 @@ export default function Home() {
                 href="/" 
                 className="text-xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent hover:from-green-500 hover:to-green-300 transition-all duration-300"
               >
-                Nuredin.B
+                NRDN.BRM
               </Link>
             </div>
 
@@ -127,36 +127,40 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        {/* Enhanced Hero Section with Parallax Effect */}
+        {/* Enhanced Hero Section with Matrix Background */}
         <section
           id="hero"
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
-          {/* Animated Background Pattern */}
+          {/* Matrix Background with Blur Effect */}
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" />
-            <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-transparent to-green-50 dark:from-green-950/20 dark:to-green-950/20" />
+            {/* Matrix GIF Background */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: "url('/assets/matrix.gif')",
+                filter: "blur(8px)",
+                transform: "scale(1.1)", // Slight scale to prevent blur edge artifacts
+              }}
+            />
+            {/* Overlay for better text readability and glass effect */}
+            <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+            {/* Optional gradient overlay for enhanced glass effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-950/30 via-transparent to-green-950/30" />
           </div>
 
-          {/* Floating Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
-          </div>
-
-          {/* Hero Content */}
+          {/* Hero Content with Glass Effect */}
           <div className="container relative z-10 mx-auto px-4 py-32 text-center md:px-6">
-            <div className="mx-auto max-w-4xl space-y-8">
+            <div className="mx-auto max-w-4xl space-y-8 backdrop-blur-sm bg-black/20 dark:bg-black/30 p-8 rounded-3xl border border-green-500/20">
               {/* Greeting */}
               <div className="animate-fade-in">
-                <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-green-600/90 text-white dark:bg-green-900/30 dark:text-green-300 border border-green-400/50">
                   Welcome to my portfolio
                 </span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="animate-fade-in-delay text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl md:text-7xl lg:text-8xl">
+              <h1 className="animate-fade-in-delay text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
                 Hi, I'm{" "}
                 <span className="relative">
                   <span className="relative z-10 bg-gradient-to-r from-green-500 via-green-400 to-green-300 bg-clip-text text-transparent">
@@ -167,12 +171,12 @@ export default function Home() {
               </h1>
               
               {/* Subtitle */}
-              <p className="animate-fade-in-delay-2 text-xl text-gray-600 dark:text-green-200 sm:text-2xl md:text-3xl font-light">
+              <p className="animate-fade-in-delay-2 text-xl text-white sm:text-2xl md:text-3xl font-light">
                 Computer Science Student
               </p>
               
               {/* Description */}
-              <p className="animate-fade-in-delay-3 mx-auto max-w-2xl text-base text-gray-500 dark:text-green-300 md:text-lg">
+              <p className="animate-fade-in-delay-3 mx-auto max-w-2xl text-base text-gray-100 md:text-lg">
                 Passionate about operating systems, exploring cloud architectures, and computer networks. 
                 Currently pursuing my degree at Johannes Kepler University while working on exciting projects.
               </p>
@@ -182,7 +186,7 @@ export default function Home() {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full sm:w-auto group dark:bg-green-600 dark:text-black dark:hover:bg-green-700"
+                  className="w-full sm:w-auto group bg-green-600 text-white hover:bg-green-700 dark:bg-green-600 dark:text-white dark:hover:bg-green-700"
                 >
                   <Link href="#projects">
                     Explore My Work
@@ -193,7 +197,7 @@ export default function Home() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto dark:border-green-500 dark:text-green-400 dark:hover:bg-green-900/20 dark:hover:text-green-300"
+                  className="w-full sm:w-auto border-green-500 text-gray-900 hover:bg-green-500/20 hover:text-gray-900 dark:border-green-500 dark:text-green-400 dark:hover:bg-green-900/20 dark:hover:text-green-300"
                 >
                   <Link href="/assets/Lebenslauf_NuredinBajrami.pdf" target="_blank">
                     Download Resume
@@ -204,16 +208,16 @@ export default function Home() {
               {/* Quick Stats */}
               <div className="animate-fade-in-delay-3 grid grid-cols-3 gap-4 pt-12 max-w-md mx-auto">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-green-400">{projects.filter(p => p.status === 'completed').length}+</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Projects</div>
+                  <div className="text-3xl font-bold text-white dark:text-green-400">{projects.filter(p => p.status === 'completed').length}+</div>
+                  <div className="text-sm text-gray-200 dark:text-gray-400">Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-green-400">2nd</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Year at JKU</div>
+                  <div className="text-3xl font-bold text-white dark:text-green-400">2nd</div>
+                  <div className="text-sm text-gray-200 dark:text-gray-400">Year at JKU</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-green-400">5+</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Technologies</div>
+                  <div className="text-3xl font-bold text-white dark:text-green-400">5+</div>
+                  <div className="text-sm text-gray-200 dark:text-gray-400">Technologies</div>
                 </div>
               </div>
             </div>
