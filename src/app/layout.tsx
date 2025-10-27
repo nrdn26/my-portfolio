@@ -7,7 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nuredin Bajrami - Portfolio",
-  description: "My personal portfolio website.",
+  description: "Computer Science Student at JKU Linz | Specializing in Networks, Cloud Computing & Cybersecurity",
+  keywords: ["Nuredin Bajrami", "Portfolio", "JKU", "Computer Science", "Austria"],
+  authors: [{ name: "Nuredin Bajrami" }],
+  openGraph: {
+    title: "Nuredin Bajrami - Portfolio",
+    description: "Computer Science Student at JKU Linz",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

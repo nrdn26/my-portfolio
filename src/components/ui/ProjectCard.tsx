@@ -1,5 +1,3 @@
-// src/components/ui/ProjectCard.tsx
-
 import Link from "next/link";
 import {
   Card,
@@ -11,15 +9,15 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, Globe } from "lucide-react";
+import { Github, Globe, ExternalLink } from "lucide-react";
 
-type ProjectCardProps = {
+interface ProjectCardProps {
   title: string;
   description: string;
   tags: readonly string[];
   githubUrl: string;
   liveUrl: string;
-};
+}
 
 export function ProjectCard({
   title,
@@ -28,61 +26,68 @@ export function ProjectCard({
   githubUrl,
   liveUrl,
 }: ProjectCardProps) {
-  return (
-    // --- THIS IS THE FIX ---
-    // Changed p-0 back to p-6 to restore the content padding
-    <Card className="relative flex h-full flex-col justify-between bg-transparent p-6 rounded-xl">
-      
-      {/* Inner Div: Contains background, overlay, and handles overflow/border */}
-      <div className="absolute inset-0 rounded-xl overflow-hidden border-2 border-white/20">
-        {/* Background Image */}
-        <div className="absolute inset-0 bg-[url('/assets/matrix.gif')] bg-cover bg-center"></div>
-        {/* Glass overlay with blur */}
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      </div>
+  const isPlaceholder = githubUrl === "#" || liveUrl === "#";
 
-      {/* Content: All content now sits on top of the inner div's layers */}
-      {/* These components have their own negative margins to align with the parent's p-6 */}
-      <CardHeader className="relative z-10 border-none bg-transparent">
-        <CardTitle className="text-white">{title}</CardTitle>
-        <CardDescription className="text-zinc-200">
+  return (
+    <Card className="group relative h-full overflow-hidden border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-950/50 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+      {/* Gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-300" />
+      
+      {/* Card Content */}
+      <CardHeader className="relative z-10">
+        <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
+          {title}
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-400 line-clamp-3">
           {description}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="relative z-10 bg-transparent">
+      <CardContent className="relative z-10">
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary">
+            <Badge 
+              key={tag} 
+              variant="secondary"
+              className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700"
+            >
               {tag}
             </Badge>
           ))}
         </div>
       </CardContent>
 
-      <CardFooter className="relative z-10 flex justify-start gap-4 bg-transparent">
-        <Button asChild variant="secondary" size="sm">
-          <Link
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2"
-          >
-            <Github className="h-4 w-4" />
-            GitHub
-          </Link>
-        </Button>
-        <Button asChild variant="secondary" size="sm">
-          <Link
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2"
-          >
-            <Globe className="h-4 w-4" />
-            Live Demo
-          </Link>
-        </Button>
+      <CardFooter className="relative z-10 mt-auto flex gap-3">
+        {!isPlaceholder ? (
+          <>
+            <Button asChild variant="outline" size="sm" className="flex-1">
+              <Link
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                Code
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="flex-1">
+              <Link
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Live Demo
+              </Link>
+            </Button>
+          </>
+        ) : (
+          <div className="flex w-full items-center justify-center rounded-md bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
+            Coming Soon
+          </div>
+        )}
       </CardFooter>
     </Card>
   );
