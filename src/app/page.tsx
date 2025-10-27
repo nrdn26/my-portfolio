@@ -21,7 +21,7 @@ export default function Home() {
       description: "This was a group project for Multimedia",
       tags: ["HTML", "CSS", "JavaScript"],
       githubUrl: "https://github.com/nrdn26/PacManGame",
-      liveUrl: "/projects/PacManGame-main/index.html",
+      liveUrl: "https://nrdn26.github.io/PacManGame",
     },
     {
       title: "Upcoming Android Project",
